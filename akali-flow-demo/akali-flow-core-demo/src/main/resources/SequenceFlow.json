@@ -4,18 +4,21 @@
   "nodes": [
     {
       "name": "startNode",
+      "type": "printNode",
       "props": {
 
       }
     },
     {
-      "name": "defaultNode-1",
+      "name": "printNode-1",
+      "type": "printNode",
       "props": {
 
       }
     },
     {
-      "name": "defaultNode-2",
+      "name": "printNode-2",
+      "type": "printNode",
       "props": {
 
       }

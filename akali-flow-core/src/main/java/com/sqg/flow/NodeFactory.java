@@ -4,5 +4,5 @@ import com.sqg.flow.config.NodeConfig;
 
 public interface NodeFactory {
 
-    public Node createNode(NodeConfig nodeConfig);
+    public BaseNode createNode(NodeConfig nodeConfig);
 }

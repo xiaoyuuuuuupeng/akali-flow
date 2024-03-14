@@ -7,7 +7,6 @@ public class FlowConfig {
 
     private String flowName;
     private String startTime;
-
     private List<NodeConfig> nodes;
     private Map<String, Object> props;
 

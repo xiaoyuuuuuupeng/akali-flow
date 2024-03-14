@@ -9,4 +9,4 @@
 - 支持springboot注入
 
 ## Demo
-akali-flow-demo
+akali-flowInstance-demo

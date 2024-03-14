@@ -10,7 +10,7 @@ public class NodeConfig {
     private int isParallel;
     private Map<String,Object> props;
     private List<NodeConfig> parallelNodes;
-
+    private String type;
     public NodeConfig() {
     }
 
@@ -60,5 +60,13 @@ public class NodeConfig {
 
     public void setIsParallel(int isParallel) {
         this.isParallel = isParallel;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

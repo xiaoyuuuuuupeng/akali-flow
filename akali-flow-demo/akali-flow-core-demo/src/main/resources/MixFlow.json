@@ -4,18 +4,26 @@
   "nodes": [
     {
       "name": "startNode",
+      "type": "printNode",
       "props": {
 
       }
     },
     {
-      "name": "defaultNode-1",
+      "name": "kafkaNode",
+      "factoryClass": "com.sqg.flow.core.flow.KafkaNodeFactory",
+      "props":{}
+    },
+    {
+      "name": "printNode-1",
+      "type": "printNode",
       "props": {
 
       }
     },
     {
-      "name": "defaultNode-2",
+      "name": "printNode-2",
+      "type": "printNode",
       "props": {
 
       }
@@ -25,15 +33,15 @@
       "isParallel": 1,
       "parallelNodes": [
         {
-          "name": "defaultNode-3-1",
-          "type": "default",
+          "name": "printNode-3-1",
+          "type": "printNode",
           "props": {
 
           }
         },
         {
-          "name": "defaultNode-3-2",
-          "type": "default",
+          "name": "printNode-3-2",
+          "type": "printNode",
           "props": {
 
           }
