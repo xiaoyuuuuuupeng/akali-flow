@@ -1,0 +1,52 @@
+{
+  "flowName": "预约活动",
+  "startTime": "2023-12-12 12:12:12",
+  "nodes": [
+    {
+      "name": "startNode",
+      "type": "printNode",
+      "props": {
+
+      }
+    },
+    {
+      "name": "kafkaNode",
+      "factoryClass": "com.sqg.flow.core.demo.KafkaNodeFactory",
+      "props":{}
+    },
+    {
+      "name": "printNode-1",
+      "type": "printNode",
+      "props": {
+
+      }
+    },
+    {
+      "name": "printNode-2",
+      "type": "printNode",
+      "props": {
+
+      }
+    },
+    {
+      "name": "ParallelNode-3",
+      "isParallel": 1,
+      "parallelNodes": [
+        {
+          "name": "printNode-3-1",
+          "type": "printNode",
+          "props": {
+
+          }
+        },
+        {
+          "name": "printNode-3-2",
+          "type": "printNode",
+          "props": {
+
+          }
+        }
+      ]
+    }
+  ]
+}
