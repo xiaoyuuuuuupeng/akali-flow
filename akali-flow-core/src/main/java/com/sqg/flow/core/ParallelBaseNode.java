@@ -39,13 +39,16 @@ public class ParallelBaseNode extends BaseNode {
     }
 
     @Override
-    public FlowRes execute(FlowReq flowReq) {
-        FlowRes ok = FlowRes.ok();
-        CompletableFuture<FlowRes>[] futureList = new CompletableFuture[baseNodes.size()];
+    public void execute() throws Exception {
+        CompletableFuture[] futureList = new CompletableFuture[baseNodes.size()];
         for (int i = 0; i < baseNodes.size(); i++) {
             BaseNode baseNode = baseNodes.get(i);
-            CompletableFuture<FlowRes> future = CompletableFuture.supplyAsync(() -> {
-                return baseNode.execute(flowReq);
+            CompletableFuture future = CompletableFuture.runAsync(() -> {
+                try {
+                    baseNode.execute();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }, pool).whenComplete((ignored, throwable) -> {
                 if (throwable != null){
                     System.out.println("execute error");
@@ -57,13 +60,6 @@ public class ParallelBaseNode extends BaseNode {
         }
         try {
             CompletableFuture.allOf(futureList).get();
-            for (CompletableFuture<FlowRes> flowResCompletableFuture : futureList) {
-                FlowRes res = flowResCompletableFuture.get();
-                if (res.return_code() != 0){
-                    return res;
-                }
-            }
-            return ok;
         }catch (Exception e){
             System.out.println("ParallelNode execute error");
             exit();

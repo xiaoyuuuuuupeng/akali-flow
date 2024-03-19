@@ -1,7 +1,5 @@
 package com.sqg.flow.core;
 
-import com.sqg.flow.core.model.FlowReq;
-import com.sqg.flow.core.model.FlowRes;
 
 
 public class DefaultBaseNode extends BaseNode {
@@ -14,8 +12,7 @@ public class DefaultBaseNode extends BaseNode {
     }
 
     @Override
-    public FlowRes execute(FlowReq flowReq) {
+    public void execute() {
         System.out.println("DefaultNode execute,i am " + this.getName() + " ----- threadName:" + Thread.currentThread().getName());
-        return FlowRes.ok();
     }
 }

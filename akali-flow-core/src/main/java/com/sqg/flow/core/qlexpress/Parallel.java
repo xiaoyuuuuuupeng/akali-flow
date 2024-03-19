@@ -17,8 +17,10 @@ public class Parallel extends Operator{
         for (Object obj : var1) {
             if (BaseNode.class.isAssignableFrom(obj.getClass())){
                 baseNodes.add((BaseNode) obj);
+            }else if (FlowInstance.class.isAssignableFrom(obj.getClass())){
+                baseNodes.addAll(((FlowInstance) obj).getBaseNodes());
             }else {
-                throw new Exception("Parallel节点参数必须是BaseNode类型");
+                throw new Exception("节点类型错误");
             }
         }
         parallelBaseNode.setNodes(baseNodes);

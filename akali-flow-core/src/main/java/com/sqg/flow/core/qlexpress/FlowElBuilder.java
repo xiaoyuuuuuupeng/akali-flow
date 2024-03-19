@@ -20,6 +20,9 @@ public class FlowElBuilder {
         // 初始化QLExpress的Runner
         RUNNER.addFunction(QLEConstant.PARALLEL, new Parallel());
         RUNNER.addFunction(QLEConstant.P, new Parallel());
+        RUNNER.addFunction(QLEConstant.SEQUENCE, new Sequence());
+        RUNNER.addFunction(QLEConstant.S, new Sequence());
+        RUNNER.addFunction(QLEConstant.IF, new IF());
     }
 
 

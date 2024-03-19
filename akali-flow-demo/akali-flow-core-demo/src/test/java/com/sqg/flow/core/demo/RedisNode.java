@@ -16,9 +16,7 @@ public class RedisNode extends BaseNode {
     }
 
     @Override
-    public FlowRes execute(FlowReq req) {
+    public void execute() throws Exception{
         System.out.println("RedisNode execute , i am "+ getName() +",开始一个进行Redis操作" + " ------- threadName:" + Thread.currentThread().getName());
-        FlowMap props = this.getProps();
-        return FlowRes.ok();
     }
 }

@@ -6,10 +6,9 @@ import com.sqg.flow.core.config.FlowConfig;
 import com.sqg.flow.core.config.JsonConfigLoader;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
 import java.util.List;
 
-public class FlowDemo {
+public class FlowCoreTests {
 
     @Test
     public void testOne(){
@@ -42,7 +41,7 @@ public class FlowDemo {
     }
 
     @Test
-    public void testTwo(){
+    public void testTwo() throws Exception {
         AnnotationLoader annotationLoader = new AnnotationLoader();
         List<FlowInstance> flowInstances = annotationLoader.loadFlowInstances("com.sqg.flow");
         for (FlowInstance flowInstance : flowInstances) {
@@ -51,12 +50,24 @@ public class FlowDemo {
         }
     }
     @Test
-    public void testEL(){
+    public void testEL() throws Exception {
         System.out.println("================================================================");
-        System.out.println("ELFLOW");
+        System.out.println("EL-FLOW");
         System.out.println("================================================================");
         JsonConfigLoader jsonConfigLoader = new JsonConfigLoader();
         FlowConfig parallelFlowConfig = jsonConfigLoader.load("flow1.json");
+        FlowInstance parallelFlowInstance = new FlowInstance().createFlow(parallelFlowConfig);
+        parallelFlowInstance.start();
+        parallelFlowInstance.end();
+    }
+
+    @Test
+    public void testIF() throws Exception {
+        System.out.println("================================================================");
+        System.out.println("IF-FLOW");
+        System.out.println("================================================================");
+        JsonConfigLoader jsonConfigLoader = new JsonConfigLoader();
+        FlowConfig parallelFlowConfig = jsonConfigLoader.load("ifFlow.json");
         FlowInstance parallelFlowInstance = new FlowInstance().createFlow(parallelFlowConfig);
         parallelFlowInstance.start();
         parallelFlowInstance.end();

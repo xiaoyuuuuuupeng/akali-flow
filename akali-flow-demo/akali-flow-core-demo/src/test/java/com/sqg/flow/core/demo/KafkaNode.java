@@ -18,8 +18,7 @@ public class KafkaNode extends BaseNode {
     }
 
     @Override
-    public FlowRes execute(FlowReq req) {
+    public void execute() throws Exception{
         System.out.println("KafkaNode execute , i am "+ getName() +",开始一个进行Kafka操作" + " ------- threadName:" + Thread.currentThread().getName());
-        return FlowRes.ok();
     }
 }

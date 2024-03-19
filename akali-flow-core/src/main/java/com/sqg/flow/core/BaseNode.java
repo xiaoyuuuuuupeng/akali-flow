@@ -28,7 +28,7 @@ public abstract class BaseNode {
         this.flowContext = flowContext;
     }
 
-    public abstract FlowRes execute(FlowReq flowReq);
+    public abstract void execute() throws Exception;
 
     public FlowMap getProps() {
         return props;

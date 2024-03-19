@@ -3,6 +3,7 @@ package com.sqg.flow.core;
 
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.json.JSONUtil;
 import com.sqg.flow.core.config.FlowConfig;
 import com.sqg.flow.core.config.NodeConfig;
 import com.sqg.flow.core.enums.FlowStatusEnum;
@@ -30,9 +31,11 @@ public class FlowInstance {
         status = FlowStatusEnum.START.getStatus();
         for (BaseNode baseNode : baseNodes) {
             baseNode.entry();
-            FlowReq flowReq = createFlowReq(baseNode);
-            FlowRes res = baseNode.execute(flowReq);
-            handleFlowRes(res);
+            try {
+                baseNode.execute();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             baseNode.exit();
         }
     }
@@ -60,8 +63,9 @@ public class FlowInstance {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+        }else{
+            flowInstance.setBaseNodes(nodeInstances);
         }
-        flowInstance.setBaseNodes(nodeInstances);
         flowInstance.setFlowName(flowConfig.getFlowName());
         String time = flowConfig.getStartTime();
         if (time != null && !"".equals(time)){
@@ -108,7 +112,23 @@ public class FlowInstance {
         }else {
             String className = nodeConfig.getClassName();
             if (className != null && !"".equals(className)){
-                return (BaseNode)instanceClass(className);
+                BaseNode baseNode = (BaseNode) instanceClass(className);
+                if (IFNode.class.isAssignableFrom(baseNode.getClass())){
+                    IFNode ifnode = (IFNode) baseNode;
+                    List<NodeConfig> trueNodes = nodeConfig.getTrueNodes();
+                    if (trueNodes != null){
+                        ifnode.setFalseNodes(loadNodes(trueNodes));
+                    }else {
+                        ifnode.setFalseNodes(new LinkedList<>());
+                    }
+                    List<NodeConfig> falseNodes = nodeConfig.getFalseNodes();
+                    if (falseNodes != null){
+                        ifnode.setFalseNodes(loadNodes(falseNodes));
+                    }else {
+                        ifnode.setFalseNodes(new LinkedList<>());
+                    }
+                }
+                return baseNode;
             }
             String factoryClass = nodeConfig.getFactoryClass();
             if (factoryClass != null && !"".equals(factoryClass)){
@@ -121,7 +141,7 @@ public class FlowInstance {
             }
         }
         this.end();
-        throw new RuntimeException("未找到对应的节点生成方式");
+        throw new RuntimeException("未找到对应的节点生成方式,nodeConfig:" + JSONUtil.toJsonStr(nodeConfig));
     }
 
     public Object instanceClass(String className){

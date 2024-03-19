@@ -10,6 +10,8 @@ public class NodeConfig {
     private int isParallel;
     private Map<String,Object> props;
     private List<NodeConfig> parallelNodes;
+    private List<NodeConfig> trueNodes;
+    private List<NodeConfig> falseNodes;
     private String type;
     public NodeConfig() {
     }
@@ -60,6 +62,22 @@ public class NodeConfig {
 
     public void setIsParallel(int isParallel) {
         this.isParallel = isParallel;
+    }
+
+    public List<NodeConfig> getTrueNodes() {
+        return trueNodes;
+    }
+
+    public void setTrueNodes(List<NodeConfig> trueNodes) {
+        this.trueNodes = trueNodes;
+    }
+
+    public List<NodeConfig> getFalseNodes() {
+        return falseNodes;
+    }
+
+    public void setFalseNodes(List<NodeConfig> falseNodes) {
+        this.falseNodes = falseNodes;
     }
 
     public String getType() {

@@ -3,13 +3,6 @@
   "startTime": "2023-12-12 12:12:12",
   "nodes": [
     {
-      "name": "C",
-      "type": "printNode",
-      "props": {
-
-      }
-    },
-    {
       "name": "A",
       "type": "printNode",
       "props": {
@@ -22,6 +15,14 @@
       "props": {
 
       }
+    },
+    {
+      "name": "C",
+      "type": "printNode",
+      "props": {
+
+      }
     }],
-    "el":"P(A,B,C)"
+      "el":"S(B,C,A,P(B,A,C,C,C,C))"
+
 }
