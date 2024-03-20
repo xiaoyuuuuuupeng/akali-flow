@@ -14,26 +14,26 @@ public class FlowCoreTests {
     @Test
     public void testOne(){
 
-        System.out.println("================================================================");
+        System.out.println("=========================================================================================");
         System.out.println("parallelFlow");
-        System.out.println("================================================================");
+        System.out.println("=========================================================================================");
         JsonConfigLoader jsonConfigLoader = new JsonConfigLoader();
         FlowConfig parallelFlowConfig = jsonConfigLoader.load("ParallelFlow.json");
         FlowInstance parallelFlowInstance = new FlowInstance().createFlow(parallelFlowConfig);
         parallelFlowInstance.start();
         parallelFlowInstance.end();
 
-        System.out.println("================================================================");
+        System.out.println("=========================================================================================");
         System.out.println("mixFlow");
-        System.out.println("================================================================");
+        System.out.println("=========================================================================================");
         FlowConfig mixFlowConfig = jsonConfigLoader.load("MixFlow.json");
         FlowInstance mixFlowInstance = new FlowInstance().createFlow(mixFlowConfig);
         mixFlowInstance.start();
         mixFlowInstance.end();
 
-        System.out.println("================================================================");
+        System.out.println("=========================================================================================");
         System.out.println("sequenceFlow");
-        System.out.println("================================================================");
+        System.out.println("=========================================================================================");
         FlowConfig sequenceFlowConfig = jsonConfigLoader.load("SequenceFlow.json");
         FlowInstance sequenceFlowInstance = new FlowInstance().createFlow(sequenceFlowConfig);
         sequenceFlowInstance.start();
@@ -42,7 +42,7 @@ public class FlowCoreTests {
     }
 
     @Test
-    public void testTwo() throws Exception {
+    public void testAnnotation() throws Exception {
         AnnotationLoader annotationLoader = new AnnotationLoader();
         List<FlowInstance> flowInstances = annotationLoader.loadFlowInstances("com.sqg.flow");
         for (FlowInstance flowInstance : flowInstances) {
@@ -52,9 +52,9 @@ public class FlowCoreTests {
     }
     @Test
     public void testEL() throws Exception {
-        System.out.println("================================================================");
+        System.out.println("=========================================================================================");
         System.out.println("EL-FLOW");
-        System.out.println("================================================================");
+        System.out.println("=========================================================================================");
         JsonConfigLoader jsonConfigLoader = new JsonConfigLoader();
         FlowConfig parallelFlowConfig = jsonConfigLoader.load("flow1.json");
         FlowInstance parallelFlowInstance = new FlowInstance().createFlow(parallelFlowConfig);
@@ -64,9 +64,9 @@ public class FlowCoreTests {
 
     @Test
     public void testIF() throws Exception {
-        System.out.println("================================================================");
+        System.out.println("=========================================================================================");
         System.out.println("IF-FLOW");
-        System.out.println("================================================================");
+        System.out.println("=========================================================================================");
         JsonConfigLoader jsonConfigLoader = new JsonConfigLoader();
         FlowConfig parallelFlowConfig = jsonConfigLoader.load("ifFlow.json");
         FlowInstance parallelFlowInstance = new FlowInstance().createFlow(parallelFlowConfig);
@@ -76,7 +76,6 @@ public class FlowCoreTests {
 
     @Test
     public void testRandom() throws Exception {
-
         Random random = new Random();
         for (int i = 0; i < 100; i++) {
             int i1 = random.nextInt(1000000);
