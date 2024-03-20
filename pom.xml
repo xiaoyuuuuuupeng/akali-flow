@@ -15,6 +15,7 @@
         <module>akali-flow-demo</module>
         <module>akali-flow-demo/akali-flow-core-demo</module>
         <module>akali-flow-demo/akali-flow-springboot-demo</module>
+        <module>akali-flow-ui</module>
     </modules>
 
     <properties>
