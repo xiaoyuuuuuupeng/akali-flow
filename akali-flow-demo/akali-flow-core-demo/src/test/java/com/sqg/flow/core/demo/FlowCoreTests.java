@@ -7,6 +7,7 @@ import com.sqg.flow.core.config.JsonConfigLoader;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Random;
 
 public class FlowCoreTests {
 
@@ -71,5 +72,16 @@ public class FlowCoreTests {
         FlowInstance parallelFlowInstance = new FlowInstance().createFlow(parallelFlowConfig);
         parallelFlowInstance.start();
         parallelFlowInstance.end();
+    }
+
+    @Test
+    public void testRandom() throws Exception {
+
+        Random random = new Random();
+        for (int i = 0; i < 100; i++) {
+            int i1 = random.nextInt(1000000);
+            String s = String.format("%06d", i1  );
+            System.out.println(s);
+        }
     }
 }

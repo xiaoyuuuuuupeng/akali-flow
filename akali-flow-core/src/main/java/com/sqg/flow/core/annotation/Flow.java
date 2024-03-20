@@ -1,7 +1,6 @@
 package com.sqg.flow.core.annotation;
 
 import java.lang.annotation.*;
-import java.util.Map;
 
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
@@ -10,4 +9,5 @@ import java.util.Map;
 public @interface Flow {
     String flowName();
     String startTime() default "";
+    String el() default "";
 }
