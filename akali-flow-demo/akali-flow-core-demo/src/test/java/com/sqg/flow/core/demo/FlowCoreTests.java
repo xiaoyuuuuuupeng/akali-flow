@@ -56,7 +56,7 @@ public class FlowCoreTests {
         System.out.println("EL-FLOW");
         System.out.println("=========================================================================================");
         JsonConfigLoader jsonConfigLoader = new JsonConfigLoader();
-        FlowConfig parallelFlowConfig = jsonConfigLoader.load("flow1.json");
+        FlowConfig parallelFlowConfig = jsonConfigLoader.load("elflow.json");
         FlowInstance parallelFlowInstance = new FlowInstance().createFlow(parallelFlowConfig);
         parallelFlowInstance.start();
         parallelFlowInstance.end();

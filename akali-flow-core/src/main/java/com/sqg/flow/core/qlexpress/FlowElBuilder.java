@@ -32,7 +32,10 @@ public class FlowElBuilder {
         for (BaseNode node : nodes) {
             context.put(node.getName(), node);
         }
-        FlowInstance execute = (FlowInstance)RUNNER.execute(el, context, errorList, true, true);
+        FlowInstance execute =(FlowInstance)RUNNER.execute(el, context, errorList, true, true);
+        if (errorList.size()>0){
+            throw new Exception(errorList.get(0));
+        }
         return execute;
     }
 }

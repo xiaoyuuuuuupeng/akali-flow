@@ -1,12 +1,11 @@
 package com.sqg.flow.core;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class FlowHolder {
 
+    private Map<String,BaseNode> nodeMap;
     private Map<String,FlowInstance> flowInstances;
 
     public FlowHolder() {
@@ -29,7 +28,6 @@ public class FlowHolder {
         if (this.flowInstances == null){
             this.flowInstances = new ConcurrentHashMap<>();
         }
-        System.out.println("add flow : " + flowInstance.getFlowName());
         this.flowInstances.put(flowInstance.getFlowName(),flowInstance);
     }
 
@@ -52,5 +50,34 @@ public class FlowHolder {
             this.flowInstances = new ConcurrentHashMap<String,FlowInstance>();
         }
         flowInstances.forEach(flowInstance -> this.flowInstances.put(flowInstance.getFlowName(),flowInstance));
+    }
+
+    public Map<String, BaseNode> getNodeMap() {
+        return nodeMap;
+    }
+
+    public List<BaseNode> getNodes() {
+        if (nodeMap == null || nodeMap.isEmpty()){
+            return new LinkedList<>();
+        }
+        Collection<BaseNode> values = nodeMap.values();
+        return new LinkedList<>(values);
+    }
+
+    public void setNodeMap(Map<String, BaseNode> nodeMap) {
+        this.nodeMap = nodeMap;
+    }
+
+    public void addNode(BaseNode node) {
+        if (this.nodeMap == null){
+            this.nodeMap = new ConcurrentHashMap<>();
+        }
+        this.nodeMap.put(node.getName(),node);
+    }
+    public void addNode(String name,BaseNode node) {
+        if (this.nodeMap == null){
+            this.nodeMap = new ConcurrentHashMap<>();
+        }
+        this.nodeMap.put(name,node);
     }
 }

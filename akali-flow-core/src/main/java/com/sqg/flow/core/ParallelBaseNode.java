@@ -24,7 +24,7 @@ public class ParallelBaseNode extends BaseNode {
     }
     public void initPool(){
         threads = Runtime.getRuntime().availableProcessors();
-        threadFactory = new NamedThreadFactory("parallel_node_pool_",false);
+        threadFactory = new NamedThreadFactory(this.getName()+"_parallel_node_pool_",false);
         pool = new ThreadPoolExecutor(this.threads, this.threads, 60L, TimeUnit.SECONDS, new ArrayBlockingQueue<>(this.queueSize), this.threadFactory);
         pool.prestartAllCoreThreads();
     }

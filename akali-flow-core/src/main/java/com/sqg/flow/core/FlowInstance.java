@@ -1,6 +1,7 @@
 package com.sqg.flow.core;
 
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.json.JSONUtil;
@@ -11,6 +12,7 @@ import com.sqg.flow.core.model.FlowMap;
 import com.sqg.flow.core.model.FlowReq;
 import com.sqg.flow.core.model.FlowRes;
 import com.sqg.flow.core.qlexpress.FlowElBuilder;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 
@@ -36,7 +38,6 @@ public class FlowInstance {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-            baseNode.exit();
         }
     }
     private void handleFlowRes(FlowRes res) {
@@ -51,11 +52,33 @@ public class FlowInstance {
         status = FlowStatusEnum.END.getStatus();
     }
 
+    public FlowInstance createFlow(List<BaseNode> nodeInstances,String el){
+        FlowInstance flowInstance = new FlowInstance();
+        if (el != null && !"".equals(el)){
+            FlowElBuilder flowElBuilder = new FlowElBuilder();
+            try {
+                flowInstance = flowElBuilder.buildEl(el, nodeInstances);
+            } catch (Exception e) {
+                throw new RuntimeException("el:"  + el + "解析失败，" + e);
+            }
+        }else{
+            flowInstance.setBaseNodes(nodeInstances);
+        }
+        flowInstance.setProps(this.getProps());
+        flowInstance.setFlowName(this.getFlowName());
+        flowInstance.setStatus(this.getStatus());
+        flowInstance.setStartTime(this.getStartTime());
+        flowInstance.setStatus(this.getStatus());
+        return flowInstance;
+    }
 
-    public FlowInstance createFlow(FlowConfig flowConfig){
+    public FlowInstance createFlow(List<BaseNode> componentNodes,FlowConfig flowConfig){
         FlowInstance flowInstance = new FlowInstance();
         List<NodeConfig> nodes = flowConfig.getNodes();
         List<BaseNode> nodeInstances = loadNodes(nodes);
+        if (CollectionUtil.isNotEmpty(componentNodes)){
+            nodeInstances.addAll(componentNodes);
+        }
         if (flowConfig.getEl() != null && !"".equals(flowConfig.getEl())){
             FlowElBuilder flowElBuilder = new FlowElBuilder();
             try {
@@ -76,6 +99,10 @@ public class FlowInstance {
         return flowInstance;
     }
 
+    public FlowInstance createFlow(FlowConfig flowConfig){
+       return createFlow(new ArrayList<>(),flowConfig);
+    }
+
     public Map<String, Object> getProps() {
         return props;
     }
@@ -94,6 +121,9 @@ public class FlowInstance {
 
     private List<BaseNode> loadNodes(List<NodeConfig> nodeConfigs) {
         LinkedList<BaseNode> baseNodeLinkedList = new LinkedList<>();
+        if (CollectionUtil.isEmpty(nodeConfigs)){
+            return baseNodeLinkedList;
+        }
         for (NodeConfig nodeConfig : nodeConfigs) {
             BaseNode baseNode = createNode(nodeConfig);
             baseNode.setProps(new FlowMap(nodeConfig.getProps(),true));
@@ -185,6 +215,9 @@ public class FlowInstance {
         this.startTime = startTime;
     }
     public void setStartTime(String startTime) {
+        if (StringUtils.isBlank(startTime)){
+            return;
+        }
         DateTime parse = DateUtil.parse(startTime);
         this.startTime = parse.toJdkDate();
     }

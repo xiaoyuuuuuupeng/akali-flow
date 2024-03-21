@@ -10,14 +10,14 @@
       }
     },
     {
-      "name": "printNode-1",
+      "name": "printNode1",
       "type": "printNode",
       "props": {
 
       }
     },
     {
-      "name": "printNode-2",
+      "name": "printNode2",
       "type": "printNode",
       "props": {
 

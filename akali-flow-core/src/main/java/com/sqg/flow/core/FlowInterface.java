@@ -5,4 +5,8 @@ import java.util.Map;
 
 public interface FlowInterface {
     List<BaseNode> getNodes();
+
+    default String getEl() {
+        return "";
+    }
 }

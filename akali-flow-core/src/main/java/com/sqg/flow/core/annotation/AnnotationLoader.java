@@ -38,7 +38,7 @@ public class AnnotationLoader {
                 flowInstance.setBaseNodes(flowInterface.getNodes());
                 flowInstance.setFlowName(flowName);
                 flowInstance.setStartTime(startTime);
-                return flowInstance;
+                return flowInstance.createFlow(flowInstance.getBaseNodes(), flowInterface.getEl());
             }
         }
         return null;

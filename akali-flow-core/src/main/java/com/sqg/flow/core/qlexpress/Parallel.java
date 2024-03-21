@@ -6,13 +6,14 @@ import com.sqg.flow.core.ParallelBaseNode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Parallel extends Operator{
 
     @Override
     public Object executeInner(Object[] var1) throws Exception{
         FlowInstance flowInstance = new FlowInstance();
-        ParallelBaseNode parallelBaseNode = new ParallelBaseNode();
+        ParallelBaseNode parallelBaseNode = new ParallelBaseNode(UUID.randomUUID().toString().replaceAll("-",""));
         ArrayList<BaseNode> baseNodes = new ArrayList<>();
         for (Object obj : var1) {
             if (BaseNode.class.isAssignableFrom(obj.getClass())){

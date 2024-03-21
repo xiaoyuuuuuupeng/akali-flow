@@ -3,36 +3,36 @@
   "startTime": "2023-12-12 12:12:12",
   "nodes": [
     {
-      "name": "ParallelNode-1",
+      "name": "ParallelNode1",
       "isParallel": 1,
       "parallelNodes": [
         {
-          "name": "printNode-1-1",
+          "name": "printNode11",
           "type": "printNode",
           "props": {
 
           }
         },
         {
-          "name": "printNode-1-2",
+          "name": "printNode12",
           "type": "printNode",
           "props": {
           }
         },
         {
-          "name": "printNode-1-3",
+          "name": "printNode13",
           "type": "printNode",
           "props": {
           }
         },
         {
-          "name": "printNode-1-4",
+          "name": "printNode14",
           "type": "printNode",
           "props": {
           }
         },
         {
-          "name": "printNode-1-5",
+          "name": "printNode15",
           "type": "printNode",
           "props": {
           }
@@ -47,36 +47,36 @@
       ]
     },
     {
-      "name": "ParallelNode-2",
+      "name": "ParallelNode",
       "isParallel": 1,
       "parallelNodes": [
         {
-          "name": "printNode-2-1",
+          "name": "printNode21",
           "type": "printNode",
           "props": {
 
           }
         },
         {
-          "name": "printNode-2-2",
+          "name": "printNode22",
           "type": "printNode",
           "props": {
           }
         },
         {
-          "name": "printNode-2-3",
+          "name": "printNode23",
           "type": "printNode",
           "props": {
           }
         },
         {
-          "name": "printNode-2-4",
+          "name": "printNode24",
           "type": "printNode",
           "props": {
           }
         },
         {
-          "name": "printNode-2-5",
+          "name": "printNode25",
           "type": "printNode",
           "props": {
           }
@@ -84,18 +84,18 @@
       ]
     },
     {
-      "name": "ParallelNode-3",
+      "name": "ParallelNode3",
       "isParallel": 1,
       "parallelNodes": [
         {
-          "name": "printNode-3-1",
+          "name": "printNode31",
           "type": "printNode",
           "props": {
 
           }
         },
         {
-          "name": "printNode-3-2",
+          "name": "printNode32",
           "type": "printNode",
           "props": {
           }
@@ -103,18 +103,18 @@
       ]
     },
     {
-      "name": "ParallelNode-4",
+      "name": "ParallelNode4",
       "isParallel": 1,
       "parallelNodes": [
         {
-          "name": "printNode-4-1",
+          "name": "printNode41",
           "type": "printNode",
           "props": {
 
           }
         },
         {
-          "name": "printNode-4-2",
+          "name": "printNode42",
           "type": "printNode",
           "props": {
           }
