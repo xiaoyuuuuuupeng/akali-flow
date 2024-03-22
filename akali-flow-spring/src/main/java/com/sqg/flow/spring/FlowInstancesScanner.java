@@ -40,7 +40,12 @@ public class FlowInstancesScanner implements ApplicationContextAware {
         loadNodes(applicationContext);
         loadFromBean(applicationContext);
         loadFromConfig();
-        log.info("A total of {} flow were loaded", flowHolder.getFlowInstances().size());
+        Map<String, FlowInstance> flowInstances = flowHolder.getFlowInstances();
+        if (flowInstances == null){
+            log.warn("no flow were loaded");
+        }else {
+            log.info("A total of {} flow were loaded",flowInstances.size());
+        }
     }
 
     private void loadNodes(ApplicationContext applicationContext) {

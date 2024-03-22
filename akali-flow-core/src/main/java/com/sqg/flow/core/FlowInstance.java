@@ -23,6 +23,7 @@ public class FlowInstance {
     private Map<String,Object> props;
     private List<BaseNode> baseNodes;
     private int status;
+    FlowElBuilder flowElBuilder = new FlowElBuilder();
 
     public FlowInstance() {
         this.status = FlowStatusEnum.INIT.getStatus();
@@ -55,7 +56,6 @@ public class FlowInstance {
     public FlowInstance createFlow(List<BaseNode> nodeInstances,String el){
         FlowInstance flowInstance = new FlowInstance();
         if (el != null && !"".equals(el)){
-            FlowElBuilder flowElBuilder = new FlowElBuilder();
             try {
                 flowInstance = flowElBuilder.buildEl(el, nodeInstances);
             } catch (Exception e) {
@@ -80,7 +80,7 @@ public class FlowInstance {
             nodeInstances.addAll(componentNodes);
         }
         if (flowConfig.getEl() != null && !"".equals(flowConfig.getEl())){
-            FlowElBuilder flowElBuilder = new FlowElBuilder();
+
             try {
                 flowInstance = flowElBuilder.buildEl(flowConfig.getEl(), nodeInstances);
             } catch (Exception e) {
